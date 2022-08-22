@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  db_postgres:
+    image: postgres:13.7-alpine3.16
+    container_name: db_postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=mydb
+  web_django:
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: mydb
+      POSTGRES_HOST: db_postgres
+      PORT_DB: 5432
+    build: .
+    command: python myrestapi/manage.py runserver 0.0.0.0:8080
+    ports:
+      - "8080:8080"
+    volumes:
+        - .:/code
+    depends_on:
+      - db_postgres
