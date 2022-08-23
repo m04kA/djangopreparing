@@ -28,3 +28,4 @@ services:
         - .:/code
     depends_on:
       - db_postgres
+    restart: always
