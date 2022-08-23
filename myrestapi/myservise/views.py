@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import viewsets, filters
 from .serializers import BooksSerializer
-from myrestapi.myservise.models import Books
+from .models import Books
 
 
 class HelloWorld(APIView):
@@ -13,6 +13,6 @@ class HelloWorld(APIView):
 class BooksViewSet(viewsets.ModelViewSet):
     queryset = Books.objects.all()
     serializer_class = BooksSerializer
-    filter_backends = (filters.OrderingFilter,)
-    ordering_fields = ('price', 'published')
-    ordering = ('-price',)
+    filter_backends = [filters.OrderingFilter]
+    ordering_fields = ['price', 'published']
+    ordering = ['-price']

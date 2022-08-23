@@ -6,7 +6,7 @@ class Books(models.Model):
     Model representing a book.
     """
     name = models.CharField("Название", max_length=100)
-    price = models.IntegerField("Цена")
+    price = models.IntegerField("Цена", default=0)
     author = models.CharField("Автор", max_length=100)
     published = models.DateField("Дата публикации")
     category = models.CharField("Категория книги", max_length=100)

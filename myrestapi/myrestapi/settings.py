@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'myrestapi',
     'rest_framework',
     'django_filters',
+    'myservise',
 ]
 
 MIDDLEWARE = [
